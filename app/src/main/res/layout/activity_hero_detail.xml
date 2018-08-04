@@ -20,7 +20,8 @@
 
             <android.support.design.widget.AppBarLayout
                 android:id="@+id/appBar"
-                style="@style/AppTheme.Layout.Toolbar.AppBar">
+                style="@style/AppTheme.Layout.Toolbar.AppBar"
+                android:layout_height="200dp">
 
                 <android.support.design.widget.CollapsingToolbarLayout
                     android:id="@+id/collapsingToolbar"
@@ -32,6 +33,7 @@
                         android:id="@+id/toolbarImage"
                         style="@style/AppTheme.Layout.Toolbar.ToolbarImage"
                         android:src="@drawable/im_marvel_heroes"
+                        app:glideUrl="@{viewModel.character.thumbnail}"
                         app:layout_collapseMode="parallax"
                         tools:ignore="ContentDescription" />
 
@@ -55,31 +57,52 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/textViewName"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:text="@{viewModel.character.name}"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Hero Name" />
 
+                    <TextView
+                        android:id="@+id/textViewDescription"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.character.description}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewName"
+                        app:layout_constraintStart_toStartOf="@+id/textViewName"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewName"
+                        tools:text="Hero\nDescription" />
+
+                    <TextView
+                        android:id="@+id/textViewComics"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/comics"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewName"
+                        app:layout_constraintStart_toStartOf="@+id/textViewName"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
+
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recyclerView"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="4dp"
                         android:clipToPadding="false"
                         android:paddingBottom="24dp"
-                        android:paddingTop="24dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewComics"
                         app:linearAdapter="@{viewModel.heroComicsAdapter}"
                         tools:itemCount="5"
                         tools:listitem="@layout/layout_item_comic" />

@@ -4,8 +4,18 @@ import io.reactivex.Scheduler
 import io.reactivex.Single
 
 
-abstract class BaseUseCaseSingle<ResultModel, Params>
+abstract class BasePaginatedUseCaseSingle<ResultModel, Params>
 constructor(private val threadExecutor: Scheduler) {
+
+    internal val limit = 25
+    internal var offset = 0
+
+    var hasMorePages = true
+        internal set
+
+    fun resetOffset() {
+        offset = 0
+    }
 
     abstract fun buildUseCaseObservable(params: Params): Single<ResultModel>
 

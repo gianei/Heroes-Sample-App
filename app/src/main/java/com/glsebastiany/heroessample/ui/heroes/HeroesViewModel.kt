@@ -35,6 +35,7 @@ class HeroesViewModel(application: Application) : BaseViewModel(application), Lo
                             HeroesListItemViewModel(
                                     response.id,
                                     response.name,
+                                    response.description,
                                     sourceModel = response,
                                     clickCallback = {
                                         detailClickLiveData.value = it

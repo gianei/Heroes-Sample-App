@@ -6,17 +6,7 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class GetAllComicsPaginatedUseCase @Inject constructor(private val apiRepository: ApiRepository) : BaseUseCaseSingle<Collection<CharacterComicsResponse.Data.CharacterComicResponse>, GetAllComicsPaginatedUseCase.Params>(Schedulers.io()) {
-
-    private val limit = 25
-    private var offset = 0
-
-    var hasMorePages = true
-        private set
-
-    fun resetOffset() {
-        offset = 0
-    }
+class GetAllComicsPaginatedUseCase @Inject constructor(private val apiRepository: ApiRepository) : BasePaginatedUseCaseSingle<Collection<CharacterComicsResponse.Data.CharacterComicResponse>, GetAllComicsPaginatedUseCase.Params>(Schedulers.io()) {
 
     data class Params(
             val characterId: Int
