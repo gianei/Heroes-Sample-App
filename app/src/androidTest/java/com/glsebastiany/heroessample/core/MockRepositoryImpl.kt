@@ -1,4 +1,4 @@
-package com.glsebastiany.heroessample.core.repository.mock
+package com.glsebastiany.heroessample.core
 
 import com.glsebastiany.heroessample.core.repository.ApiRepository
 import com.glsebastiany.heroessample.core.repository.model.CharacterComicsResponse

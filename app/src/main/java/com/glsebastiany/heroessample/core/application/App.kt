@@ -7,10 +7,10 @@ import com.glsebastiany.heroessample.core.di.DaggerApplicationComponent
 
 import timber.log.Timber
 
-class App : Application() {
+open class App : Application() {
 
     lateinit var applicationComponent: ApplicationComponent
-        private set
+        internal set
 
     override fun onCreate() {
         super.onCreate()

@@ -3,7 +3,6 @@ package com.glsebastiany.heroessample.ui.heroes
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import com.glsebastiany.heroessample.core.getApplicationComponent
-import com.glsebastiany.heroessample.core.repository.model.CharacterComicsResponse
 import com.glsebastiany.heroessample.core.repository.model.CharactersResponse
 import com.glsebastiany.heroessample.core.schedulers.IoToMainScheduler
 import com.glsebastiany.heroessample.core.usecase.GetAllHeroesPaginatedUseCase
@@ -45,7 +44,7 @@ class HeroesViewModel(application: Application) : BaseViewModel(application), Lo
                     }
 
     override fun load() {
-        detailClickLiveData.value = null
+        detailClickLiveData.postValue(null)
         getAllHeroesPaginatedUseCase.resetOffset()
         heroesAdapter.clear()
         runUseCase()

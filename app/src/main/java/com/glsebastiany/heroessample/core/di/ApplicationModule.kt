@@ -4,7 +4,6 @@ import android.content.Context
 import com.glsebastiany.heroessample.core.repository.ApiRepository
 import com.glsebastiany.heroessample.core.repository.marvel.MarvelApi
 import com.glsebastiany.heroessample.core.repository.marvel.MarvelApiRepository
-import com.glsebastiany.heroessample.core.repository.mock.MockRepositoryImpl
 import com.glsebastiany.heroessample.core.retrofit.factory.RetrofitFactory
 import dagger.Module
 import dagger.Provides
@@ -14,7 +13,7 @@ import javax.inject.Singleton
  * Dagger module that provides objects which will live during the application lifecycle.
  */
 @Module
-class ApplicationModule(context: Context) {
+open class ApplicationModule(context: Context) {
     private val context: Context = context.applicationContext
 
     @Provides
@@ -23,12 +22,7 @@ class ApplicationModule(context: Context) {
 
     @Provides
     @Singleton
-    internal fun provideMarvelApi(repository: RetrofitFactory): ApiRepository =
+    internal open fun provideMarvelApi(repository: RetrofitFactory): ApiRepository =
             MarvelApiRepository(repository.createRetrofitService(MarvelApi::class.java))
-
-//    @Provides
-//    @Singleton
-//    internal fun provideMockApi(): ApiRepository =
-//            MockRepositoryImpl()
 
 }
