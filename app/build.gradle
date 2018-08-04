@@ -17,9 +17,18 @@ android {
     }
 
     buildTypes {
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField 'String', "MarvelPublicApiKey", marvelPublicApiKey
+            buildConfigField 'String', "MarvelPrivateApiKey", marvelPrivateApiKey
+        }
+
+        debug {
+            buildConfigField 'String', "MarvelPublicApiKey", marvelPublicApiKey
+            buildConfigField 'String', "MarvelPrivateApiKey", marvelPrivateApiKey
         }
     }
 

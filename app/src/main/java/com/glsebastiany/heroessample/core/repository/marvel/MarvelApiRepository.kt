@@ -8,6 +8,12 @@ import javax.inject.Inject
 class MarvelApiRepository @Inject constructor(private val marvelApi: MarvelApi) : ApiRepository {
 
     override fun getHeroes(): Single<out Collection<HeroesListItemViewModel>> {
-        return marvelApi.getAllHeroes()
+        return marvelApi
+                .getAllHeroes(0, 50)
+                .map {
+                    it.data.results.map {
+                        HeroesListItemViewModel(it.name)
+                    }
+                }
     }
 }
