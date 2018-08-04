@@ -9,7 +9,7 @@ import android.view.ViewGroup
 abstract class RVBaseAdapter<T> : RecyclerView.Adapter<RVGenericViewHolder<T>>() {
 
     var viewModels = mutableListOf<T>()
-        set(value) {
+        private set(value) {
             field = value
             notifyDataSetChanged()
         }
@@ -17,6 +17,13 @@ abstract class RVBaseAdapter<T> : RecyclerView.Adapter<RVGenericViewHolder<T>>()
     fun clear() {
         viewModels.clear()
         notifyDataSetChanged()
+    }
+
+    fun addViewModels(newViewModels: Collection<T>) {
+        val currentSize = itemCount
+
+        viewModels.addAll(newViewModels)
+        notifyItemRangeInserted(currentSize, newViewModels.size)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RVGenericViewHolder<T> {

@@ -2,8 +2,8 @@ package com.glsebastiany.heroessample.ui.heroes
 
 import android.app.Application
 import com.glsebastiany.heroessample.core.getApplicationComponent
-import com.glsebastiany.heroessample.core.repository.ApiRepository
 import com.glsebastiany.heroessample.core.schedulers.IoToMainScheduler
+import com.glsebastiany.heroessample.core.usecase.GetAllHeroesPaginatedUseCase
 import com.glsebastiany.heroessample.ui.core.base.BaseViewModel
 import com.glsebastiany.heroessample.ui.core.base.LoadableViewModel
 import com.glsebastiany.heroessample.ui.core.base.ViewModelRxTransformer
@@ -14,7 +14,7 @@ import javax.inject.Inject
 class HeroesViewModel(application: Application) : BaseViewModel(application), LoadableViewModel {
 
     @Inject
-    lateinit var apiRepository: ApiRepository
+    lateinit var getAllHeroesPaginatedUseCase: GetAllHeroesPaginatedUseCase
 
     val heroesAdapter = HeroesAdapter()
 
@@ -23,20 +23,30 @@ class HeroesViewModel(application: Application) : BaseViewModel(application), Lo
     }
 
     internal fun getLoadRx(): Single<MutableList<HeroesListItemViewModel>> =
-            apiRepository
-                    .getHeroes()
+            getAllHeroesPaginatedUseCase
+                    .execute(Any())
                     .map { it.toMutableList() }
 
     override fun load() {
+        getAllHeroesPaginatedUseCase.resetOffset()
+        heroesAdapter.clear()
+        runUseCase()
+    }
+
+    private fun runUseCase() {
         getLoadRx()
                 .compose(ViewModelRxTransformer(this))
                 .compose(IoToMainScheduler())
-                .doOnSubscribe { heroesAdapter.clear() }
                 .subscribe(onLoadResult) {}
     }
 
+    fun applyPagination() {
+        if (getAllHeroesPaginatedUseCase.hasMorePages)
+            runUseCase()
+    }
+
     internal val onLoadResult: (MutableList<HeroesListItemViewModel>) -> Unit = {
-        heroesAdapter.viewModels = it
+        heroesAdapter.addViewModels(it)
     }
 
 }

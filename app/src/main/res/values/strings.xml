@@ -2,7 +2,7 @@
     <string name="app_name">Heroes Sample</string>
 
     <!--Error-->
-    <string name="generic_error">Something wrong happened</string>
+    <string name="generic_error">Something wrong happened, try again.</string>
     <string name="no_network_message">No internet connection</string>
 
     <!--Heroes-->
