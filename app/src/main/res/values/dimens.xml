@@ -1,0 +1,5 @@
+<resources>
+
+    <dimen name="collapsing_app_bar_height">150dp</dimen>
+
+</resources>

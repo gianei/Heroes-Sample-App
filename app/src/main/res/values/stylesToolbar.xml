@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.Layout.Toolbar" />
+
+    <style name="AppTheme.Layout.Toolbar.CollapsingToolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="contentScrim">?android:attr/colorPrimary</item>
+        <item name="layout_scrollFlags">scroll|exitUntilCollapsed</item>
+        <item name="collapsedTitleTextAppearance">
+            @style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse
+        </item>
+        <item name="expandedTitleTextAppearance">@style/Text.Toolbar.Expanded</item>
+    </style>
+
+    <style name="AppTheme.Layout.Toolbar.AppBar">
+        <item name="android:layout_height">@dimen/collapsing_app_bar_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:fitsSystemWindows">false</item>
+    </style>
+
+    <style name="AppTheme.Layout.Toolbar.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?android:attr/actionBarSize</item>
+        <item name="layout_collapseMode">pin</item>
+    </style>
+
+    <style name="AppTheme.Layout.Toolbar.CoordinatorLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">false</item>
+    </style>
+
+    <style name="AppTheme.Layout.Toolbar.ToolbarImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="Text.Toolbar.Expanded" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+
+</resources>

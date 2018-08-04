@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.glsebastiany.heroessample.ui.heroes.HeroesViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.CoordinatorLayout style="@style/AppTheme.Layout.Toolbar.CoordinatorLayout">
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appBar"
+                style="@style/AppTheme.Layout.Toolbar.AppBar">
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/collapsingToolbar"
+                    style="@style/AppTheme.Layout.Toolbar.CollapsingToolbar"
+                    app:title="@string/heroes"
+                    tools:title="Title p">
+
+                    <ImageView
+                        android:id="@+id/toolbarImage"
+                        style="@style/AppTheme.Layout.Toolbar.ToolbarImage"
+                        android:src="@mipmap/im_marvel_heroes"
+                        app:layout_collapseMode="parallax"
+                        tools:ignore="ContentDescription" />
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/AppTheme.Layout.Toolbar.Toolbar" />
+
+                </android.support.design.widget.CollapsingToolbarLayout>
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingBottom="24dp"
+                    android:paddingTop="24dp"
+                    app:linearAdapter="@{viewModel.heroesAdapter}"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/layout_item_hero" />
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <include
+            layout="@layout/layout_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:isLoading="@{viewModel.loading}" />
+
+    </FrameLayout>
+
+</layout>
