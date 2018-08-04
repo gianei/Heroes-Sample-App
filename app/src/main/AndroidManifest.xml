@@ -17,8 +17,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".ui.heroes.HeroesActivity" />
-
         <activity
             android:name="com.glsebastiany.heroessample.ui.splash.SplashScreen"
             android:noHistory="true"
@@ -28,6 +26,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.heroes.HeroesActivity" />
+
+        <activity android:name=".ui.heroes.detail.HeroDetailActivity" />
 
     </application>
 

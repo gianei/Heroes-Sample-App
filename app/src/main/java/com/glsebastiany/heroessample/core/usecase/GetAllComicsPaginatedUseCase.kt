@@ -1,14 +1,12 @@
 package com.glsebastiany.heroessample.core.usecase
 
 import com.glsebastiany.heroessample.core.repository.ApiRepository
-import com.glsebastiany.heroessample.core.repository.model.CharactersResponse
-import com.glsebastiany.heroessample.ui.heroes.HeroesListItemViewModel
+import com.glsebastiany.heroessample.core.repository.model.CharacterComicsResponse
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-
-class GetAllHeroesPaginatedUseCase @Inject constructor(private val apiRepository: ApiRepository) : BaseUseCaseSingle<Collection<CharactersResponse.Data.CharacterResponse>, Any>(Schedulers.io()) {
+class GetAllComicsPaginatedUseCase @Inject constructor(private val apiRepository: ApiRepository) : BaseUseCaseSingle<Collection<CharacterComicsResponse.Data.CharacterComicResponse>, GetAllComicsPaginatedUseCase.Params>(Schedulers.io()) {
 
     private val limit = 25
     private var offset = 0
@@ -20,10 +18,15 @@ class GetAllHeroesPaginatedUseCase @Inject constructor(private val apiRepository
         offset = 0
     }
 
-    override fun buildUseCaseObservable(params: Any): Single<Collection<CharactersResponse.Data.CharacterResponse>> {
+    data class Params(
+            val characterId: Int
+    )
+
+    override fun buildUseCaseObservable(params: Params): Single<Collection<CharacterComicsResponse.Data.CharacterComicResponse>> {
 
         return apiRepository
-                .getHeroesPaginated(
+                .getHeroComicsPaginated(
+                        params.characterId,
                         offset,
                         limit
                 )
@@ -33,8 +36,8 @@ class GetAllHeroesPaginatedUseCase @Inject constructor(private val apiRepository
                         hasMorePages = false
                     }
                 }
-                .map { charactersResponse ->
-                    charactersResponse.data.results
+                .map { comicsResponse ->
+                    comicsResponse.data.results
                 }
     }
 

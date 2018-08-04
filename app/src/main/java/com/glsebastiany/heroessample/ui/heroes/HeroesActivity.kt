@@ -1,12 +1,14 @@
 package com.glsebastiany.heroessample.ui.heroes
 
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import com.glsebastiany.heroessample.R
+import com.glsebastiany.heroessample.core.repository.model.CharactersResponse
 import com.glsebastiany.heroessample.databinding.ActivityHeroesBinding
 import com.glsebastiany.heroessample.ui.core.base.BaseActivity
+import com.glsebastiany.heroessample.ui.core.recyclerview.RVUtil
+import com.glsebastiany.heroessample.ui.heroes.detail.HeroDetailActivity
 
 
 class HeroesActivity : BaseActivity<HeroesViewModel, ActivityHeroesBinding>() {
@@ -20,34 +22,17 @@ class HeroesActivity : BaseActivity<HeroesViewModel, ActivityHeroesBinding>() {
     override fun onAfterCreateView(savedInstanceState: Bundle?) {
         super.onAfterCreateView(savedInstanceState)
 
-        setupScrollToLoadMore()
+        viewModel.detailClickLiveData.observe(this, clickObserver)
+
+        RVUtil.setupScrollToLoadMore(
+                binding.recyclerView,
+                viewModel
+        ) { viewModel.applyPagination() }
     }
 
-    private fun setupScrollToLoadMore() {
-        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                //checks for scroll down
-                if (dy > 0) {
-                    recyclerView.post {
-                        // delay handling so that it is executed outside the scroll callback
-                        handleScrollDown(recyclerView)
-                    }
-                }
-            }
-        })
-    }
-
-    private fun handleScrollDown(recyclerView: RecyclerView) {
-        val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-        val visibleItemCount = layoutManager.childCount
-        val totalItemCount = layoutManager.itemCount
-        val pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
-
-        if (!viewModel.isLoading) {
-            if (visibleItemCount + pastVisibleItems >= totalItemCount) {
-                viewModel.applyPagination()
-            }
-        }
+    private val clickObserver = Observer<CharactersResponse.Data.CharacterResponse> {
+        if (it != null)
+            HeroDetailActivity.launch(this, it)
     }
 
     companion object {

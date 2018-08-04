@@ -1,7 +1,10 @@
 package com.glsebastiany.heroessample.ui.heroes
 
 import android.app.Application
+import android.arch.lifecycle.MutableLiveData
 import com.glsebastiany.heroessample.core.getApplicationComponent
+import com.glsebastiany.heroessample.core.repository.model.CharacterComicsResponse
+import com.glsebastiany.heroessample.core.repository.model.CharactersResponse
 import com.glsebastiany.heroessample.core.schedulers.IoToMainScheduler
 import com.glsebastiany.heroessample.core.usecase.GetAllHeroesPaginatedUseCase
 import com.glsebastiany.heroessample.ui.core.base.BaseViewModel
@@ -18,6 +21,8 @@ class HeroesViewModel(application: Application) : BaseViewModel(application), Lo
 
     val heroesAdapter = HeroesAdapter()
 
+    val detailClickLiveData = MutableLiveData<CharactersResponse.Data.CharacterResponse>()
+
     init {
         application.getApplicationComponent().inject(this)
     }
@@ -25,9 +30,21 @@ class HeroesViewModel(application: Application) : BaseViewModel(application), Lo
     internal fun getLoadRx(): Single<MutableList<HeroesListItemViewModel>> =
             getAllHeroesPaginatedUseCase
                     .execute(Any())
-                    .map { it.toMutableList() }
+                    .map { listResponse ->
+                        listResponse.map { response ->
+                            HeroesListItemViewModel(
+                                    response.id,
+                                    response.name,
+                                    sourceModel = response,
+                                    clickCallback = {
+                                        detailClickLiveData.value = it
+                                    }
+                            )
+                        }.toMutableList()
+                    }
 
     override fun load() {
+        detailClickLiveData.value = null
         getAllHeroesPaginatedUseCase.resetOffset()
         heroesAdapter.clear()
         runUseCase()
