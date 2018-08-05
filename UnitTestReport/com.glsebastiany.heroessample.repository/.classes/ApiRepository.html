@@ -1,0 +1,59 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ApiRepository</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.glsebastiany.heroessample.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ApiRepository (com.glsebastiany.heroessample.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ApiRepository</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.glsebastiany.heroessample.repository
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.glsebastiany.heroessample.repository.model.CharacterComicsResponse
+<i>4</i>&nbsp;import com.glsebastiany.heroessample.repository.model.CharactersResponse
+<i>5</i>&nbsp;import io.reactivex.Single
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;interface ApiRepository {
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;    fun getHeroesPaginated(offset: Int, limit: Int): Single&lt;CharactersResponse&gt;
+<i>10</i>&nbsp;    fun getHeroComicsPaginated(characterId: Int, offset: Int, limit: Int): Single&lt;CharacterComicsResponse&gt;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2018-08-05 10:59</div>
+</div>
+</body>
+</html>
