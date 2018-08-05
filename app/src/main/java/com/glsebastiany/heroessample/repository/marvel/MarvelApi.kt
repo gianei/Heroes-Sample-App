@@ -1,7 +1,7 @@
-package com.glsebastiany.heroessample.core.repository.marvel
+package com.glsebastiany.heroessample.repository.marvel
 
-import com.glsebastiany.heroessample.core.repository.model.CharacterComicsResponse
-import com.glsebastiany.heroessample.core.repository.model.CharactersResponse
+import com.glsebastiany.heroessample.repository.model.CharacterComicsResponse
+import com.glsebastiany.heroessample.repository.model.CharactersResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

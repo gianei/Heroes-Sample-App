@@ -1,7 +1,7 @@
-package com.glsebastiany.heroessample.core.usecase
+package com.glsebastiany.heroessample.usecase
 
-import com.glsebastiany.heroessample.core.repository.ApiRepository
-import com.glsebastiany.heroessample.core.repository.model.CharactersResponse
+import com.glsebastiany.heroessample.repository.ApiRepository
+import com.glsebastiany.heroessample.repository.model.CharactersResponse
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

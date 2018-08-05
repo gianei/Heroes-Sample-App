@@ -1,4 +1,4 @@
-package com.glsebastiany.heroessample.core.repository.model
+package com.glsebastiany.heroessample.repository.model
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -19,7 +19,7 @@ data class CharactersResponse(
                 val id: Int,
                 val name: String,
                 val description: String,
-                val thumbnail: Image
+                val thumbnail: Image? = null
         ) : Parcelable {
             constructor(parcel: Parcel) : this(
                     parcel.readInt(),

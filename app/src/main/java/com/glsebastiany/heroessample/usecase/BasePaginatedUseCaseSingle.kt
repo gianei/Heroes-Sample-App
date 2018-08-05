@@ -1,4 +1,4 @@
-package com.glsebastiany.heroessample.core.usecase
+package com.glsebastiany.heroessample.usecase
 
 import io.reactivex.Scheduler
 import io.reactivex.Single

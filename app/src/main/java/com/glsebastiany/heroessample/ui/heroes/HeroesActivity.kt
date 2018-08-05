@@ -4,7 +4,7 @@ import android.arch.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
 import com.glsebastiany.heroessample.R
-import com.glsebastiany.heroessample.core.repository.model.CharactersResponse
+import com.glsebastiany.heroessample.repository.model.CharactersResponse
 import com.glsebastiany.heroessample.databinding.ActivityHeroesBinding
 import com.glsebastiany.heroessample.ui.core.base.BaseActivity
 import com.glsebastiany.heroessample.ui.core.recyclerview.RVUtil

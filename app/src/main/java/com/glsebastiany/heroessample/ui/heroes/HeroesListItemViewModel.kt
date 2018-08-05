@@ -1,6 +1,6 @@
 package com.glsebastiany.heroessample.ui.heroes
 
-import com.glsebastiany.heroessample.core.repository.model.CharactersResponse
+import com.glsebastiany.heroessample.repository.model.CharactersResponse
 
 data class HeroesListItemViewModel(
         val characterId: Int,

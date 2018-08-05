@@ -78,7 +78,18 @@ dependencies {
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.0'
 
+    // Truth
+    androidTestImplementation 'com.google.truth:truth:0.40'
+    testImplementation 'com.google.truth:truth:0.40'
+
+    // Junit
     testImplementation 'junit:junit:4.12'
+
+    // Mockito
+    testImplementation 'org.mockito:mockito-core:2.19.1'
+    androidTestImplementation 'org.mockito:mockito-android:2.19.1'
+
+    // Espresso
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

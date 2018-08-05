@@ -3,9 +3,9 @@ package com.glsebastiany.heroessample.ui.heroes.detail
 import android.app.Application
 import android.content.Intent
 import com.glsebastiany.heroessample.core.getApplicationComponent
-import com.glsebastiany.heroessample.core.repository.model.CharactersResponse
+import com.glsebastiany.heroessample.repository.model.CharactersResponse
 import com.glsebastiany.heroessample.core.schedulers.IoToMainScheduler
-import com.glsebastiany.heroessample.core.usecase.GetAllComicsPaginatedUseCase
+import com.glsebastiany.heroessample.usecase.GetAllComicsPaginatedUseCase
 import com.glsebastiany.heroessample.ui.core.base.BaseViewModel
 import com.glsebastiany.heroessample.ui.core.base.LoadableViewModel
 import com.glsebastiany.heroessample.ui.core.base.ViewModelRxTransformer

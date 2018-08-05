@@ -1,4 +1,4 @@
-package com.glsebastiany.heroessample.core.repository.model
+package com.glsebastiany.heroessample.repository.model
 
 data class CharacterComicsResponse(
         val status: String,

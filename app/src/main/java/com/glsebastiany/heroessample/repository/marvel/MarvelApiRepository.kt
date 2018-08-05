@@ -1,12 +1,12 @@
-package com.glsebastiany.heroessample.core.repository.marvel
+package com.glsebastiany.heroessample.repository.marvel
 
-import com.glsebastiany.heroessample.core.repository.ApiRepository
-import com.glsebastiany.heroessample.core.repository.model.CharacterComicsResponse
-import com.glsebastiany.heroessample.core.repository.model.CharactersResponse
+import com.glsebastiany.heroessample.repository.ApiRepository
+import com.glsebastiany.heroessample.repository.model.CharacterComicsResponse
+import com.glsebastiany.heroessample.repository.model.CharactersResponse
 import io.reactivex.Single
 import javax.inject.Inject
 
-class MarvelApiRepository @Inject constructor(private val marvelApi: MarvelApi) : ApiRepository {
+open class MarvelApiRepository @Inject constructor(private val marvelApi: MarvelApi) : ApiRepository {
 
     override fun getHeroesPaginated(offset: Int, limit: Int): Single<CharactersResponse> {
         return marvelApi

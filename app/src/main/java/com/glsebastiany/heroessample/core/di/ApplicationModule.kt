@@ -1,9 +1,9 @@
 package com.glsebastiany.heroessample.core.di
 
 import android.content.Context
-import com.glsebastiany.heroessample.core.repository.ApiRepository
-import com.glsebastiany.heroessample.core.repository.marvel.MarvelApi
-import com.glsebastiany.heroessample.core.repository.marvel.MarvelApiRepository
+import com.glsebastiany.heroessample.repository.ApiRepository
+import com.glsebastiany.heroessample.repository.marvel.MarvelApi
+import com.glsebastiany.heroessample.repository.marvel.MarvelApiRepository
 import com.glsebastiany.heroessample.core.retrofit.factory.RetrofitFactory
 import dagger.Module
 import dagger.Provides
