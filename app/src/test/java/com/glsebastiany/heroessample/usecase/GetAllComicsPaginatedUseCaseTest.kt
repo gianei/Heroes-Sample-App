@@ -2,7 +2,6 @@ package com.glsebastiany.heroessample.usecase
 
 import com.glsebastiany.heroessample.repository.marvel.MarvelApiRepository
 import com.glsebastiany.heroessample.repository.model.CharacterComicsResponse
-import com.google.common.truth.Truth
 import com.google.common.truth.Truth.assertThat
 import io.reactivex.Single
 import org.junit.Before

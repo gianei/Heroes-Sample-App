@@ -12,10 +12,40 @@ import javax.inject.Singleton
 class MockRepositoryImpl @Inject constructor() : ApiRepository {
 
     override fun getHeroesPaginated(offset: Int, limit: Int): Single<CharactersResponse> {
-        TODO("Not implemented yet")
+        return Single.just(CharactersResponse(
+                "status",
+                CharactersResponse.Data(
+                        offset,
+                        limit,
+                        1,
+                        1,
+                        listOf(
+                                CharactersResponse.Data.CharacterResponse(
+                                        3,
+                                        "Hero 3",
+                                        "Description hero 3"
+                                )
+                        )
+                )
+        ))
     }
 
     override fun getHeroComicsPaginated(characterId: Int, offset: Int, limit: Int): Single<CharacterComicsResponse> {
-        TODO("Not implemented yet")
+        return Single.just(CharacterComicsResponse(
+                "status",
+                CharacterComicsResponse.Data(
+                        offset,
+                        limit,
+                        1,
+                        1,
+                        listOf(
+                                CharacterComicsResponse.Data.CharacterComicResponse(
+                                        characterId,
+                                        "Comic title hero 3",
+                                        "Description comic hero 3"
+                                )
+                        )
+                )
+        ))
     }
 }
