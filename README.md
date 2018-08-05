@@ -9,3 +9,8 @@ To build the app, you must insert Marvel api keys in a new gradle.properties fil
 marvelPublicApiKey="1111111"
 marvelPrivateApiKey="2222222"
 ```
+
+## Testing
+There are instrumented tests with and without Expresso, they use mocked repositories. Just run on your IDE.
+
+Unit tests report is in folder UnitTestReport
