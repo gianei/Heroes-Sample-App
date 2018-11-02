@@ -1,37 +1,38 @@
 package com.glsebastiany.heroessample.ui.core.rxsteps
 
+import com.glsebastiany.heroessample.ui.core.base.LoadingStateHolder
 import io.reactivex.*
 
 /**
  * Use this step to have an updated loading state
  */
-class StepLoadingState<T> constructor(private val onLoadingStateChanged: (Boolean) -> Unit) :
+class StepLoadingState<T> constructor(private val loadingStateHolder: LoadingStateHolder) :
         SingleTransformer<T, T>,
         CompletableTransformer {
 
     override fun apply(upstream: Completable): CompletableSource {
         return upstream
                 .doOnSubscribe {
-                    onLoadingStateChanged(true)
+                    loadingStateHolder.onLoadingStateChanged(true)
                 }
                 .doOnComplete {
-                    onLoadingStateChanged(false)
+                    loadingStateHolder.onLoadingStateChanged(false)
                 }
                 .doOnError {
-                    onLoadingStateChanged(false)
+                    loadingStateHolder.onLoadingStateChanged(false)
                 }
     }
 
     override fun apply(upstream: Single<T>): SingleSource<T> {
         return upstream
                 .doOnSubscribe {
-                    onLoadingStateChanged(true)
+                    loadingStateHolder.onLoadingStateChanged(true)
                 }
                 .doOnSuccess {
-                    onLoadingStateChanged(false)
+                    loadingStateHolder.onLoadingStateChanged(false)
                 }
                 .doOnError {
-                    onLoadingStateChanged(false)
+                    loadingStateHolder.onLoadingStateChanged(false)
                 }
     }
 

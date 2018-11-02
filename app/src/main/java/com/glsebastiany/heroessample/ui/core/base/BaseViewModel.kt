@@ -9,9 +9,8 @@ import android.databinding.PropertyChangeRegistry
 import android.support.annotation.CallSuper
 import com.glsebastiany.heroessample.BR
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 
-open class BaseViewModel(val app: Application) : AndroidViewModel(app), Observable {
+open class BaseViewModel(val app: Application) : AndroidViewModel(app), Observable, LoadingStateHolder {
 
     // region binding setup
 
@@ -38,7 +37,7 @@ open class BaseViewModel(val app: Application) : AndroidViewModel(app), Observab
 
     //endregion
 
-    //region view binding variables
+    //region loading state
 
     @get:Bindable
     var isLoading: Boolean = false
@@ -47,15 +46,15 @@ open class BaseViewModel(val app: Application) : AndroidViewModel(app), Observab
             notifyPropertyChanged(BR.loading)
         }
 
+    override fun onLoadingStateChanged(isLoading: Boolean) {
+        this.isLoading = isLoading
+    }
+
     //endregion
 
     //region disposable management
 
     internal val disposables: CompositeDisposable = CompositeDisposable()
-
-    internal fun registerDisposable(disposable: Disposable) {
-        disposables.add(disposable)
-    }
 
     @CallSuper
     override fun onCleared() {

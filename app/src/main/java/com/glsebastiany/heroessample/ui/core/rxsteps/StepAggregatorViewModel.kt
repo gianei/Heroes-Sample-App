@@ -12,7 +12,7 @@ class StepAggregatorViewModel<T> constructor(private val baseViewModel: BaseView
     override fun apply(upstream: Completable): CompletableSource {
         return upstream
                 .observeOn(Schedulers.io())
-                .compose(StepLoadingState<T> { isLoading -> baseViewModel.isLoading = isLoading })
+                .compose(StepLoadingState<T>(baseViewModel))
                 .compose(StepLogErrors<T>())
                 .compose(StepFireErrorEvents<T>(baseViewModel))
                 .compose(IoToMainScheduler<T>())
@@ -21,7 +21,7 @@ class StepAggregatorViewModel<T> constructor(private val baseViewModel: BaseView
     override fun apply(upstream: Single<T>): SingleSource<T> {
         return upstream
                 .observeOn(Schedulers.io())
-                .compose(StepLoadingState<T> { isLoading -> baseViewModel.isLoading = isLoading })
+                .compose(StepLoadingState<T>(baseViewModel))
                 .compose(StepLogErrors<T>())
                 .compose(StepFireErrorEvents<T>(baseViewModel))
                 .compose(IoToMainScheduler<T>())
