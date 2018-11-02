@@ -6,11 +6,11 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
 
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.glsebastiany.heroessample"
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "com.glsebastiany.heroessample.core.CustomTestRunner"
@@ -42,32 +42,32 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Dagger
-    ext.daggerVersion = '2.14.1'
+    ext.daggerVersion = '2.19'
     api "com.google.dagger:dagger:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     compileOnly 'org.glassfish:javax.annotation:10.0-b28'
 
     // Retrofit
-    ext.retrofitVersion = '2.3.0'
+    ext.retrofitVersion = '2.4.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
 
     // Android Support
-    ext.androidSupportVersion = '27.1.1'
+    ext.androidSupportVersion = '28.0.0'
     ext.androidLifecycle = '1.1.1'
     implementation "com.android.support:appcompat-v7:$androidSupportVersion"
     implementation "com.android.support:recyclerview-v7:$androidSupportVersion"
     implementation "com.android.support:cardview-v7:$androidSupportVersion"
     implementation "com.android.support:design:$androidSupportVersion"
     implementation "com.android.support:support-vector-drawable:$androidSupportVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation "android.arch.lifecycle:extensions:$androidLifecycle"
 
     // Rx
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.14'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
 
     // Glide
@@ -86,14 +86,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     // Mockito
-    testImplementation 'org.mockito:mockito-core:2.19.1'
+    testImplementation 'org.mockito:mockito-core:2.20.0'
     androidTestImplementation 'org.mockito:mockito-android:2.19.1'
 
     // Espresso
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:3.0.2', {
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'design'
