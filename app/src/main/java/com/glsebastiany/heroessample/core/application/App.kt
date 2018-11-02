@@ -1,6 +1,8 @@
 package com.glsebastiany.heroessample.core.application
 
 import android.app.Application
+import com.glsebastiany.bindingrecyclerview.BindingRecyclerViewConfig
+import com.glsebastiany.heroessample.BR
 import com.glsebastiany.heroessample.core.di.ApplicationComponent
 import com.glsebastiany.heroessample.core.di.ApplicationModule
 import com.glsebastiany.heroessample.core.di.DaggerApplicationComponent
@@ -19,6 +21,8 @@ open class App : Application() {
 
         configureTimber()
 
+        configureBindingRecyclerViewAdapter()
+
     }
 
     private fun configureTimber() {
@@ -30,4 +34,11 @@ open class App : Application() {
                 .applicationModule(ApplicationModule(applicationContext.applicationContext))
                 .build()
     }
+
+    private fun configureBindingRecyclerViewAdapter() {
+        BindingRecyclerViewConfig.init(object: BindingRecyclerViewConfig.ViewModelBrId() {
+            override val id: Int = BR.viewModel
+        })
+    }
+
 }

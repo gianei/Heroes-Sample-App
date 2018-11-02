@@ -73,6 +73,9 @@ dependencies {
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.7.1'
 
+    // Gianei`s RecyclerView Data binding
+    implementation 'com.github.gianei:BindingRecyclerView:1.1.0'
+
     // #### Debuging ####
 
     // Timber
