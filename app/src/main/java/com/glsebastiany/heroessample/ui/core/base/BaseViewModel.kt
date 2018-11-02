@@ -51,7 +51,7 @@ open class BaseViewModel(val app: Application) : AndroidViewModel(app), Observab
 
     //region disposable management
 
-    private val disposables: CompositeDisposable = CompositeDisposable()
+    internal val disposables: CompositeDisposable = CompositeDisposable()
 
     internal fun registerDisposable(disposable: Disposable) {
         disposables.add(disposable)

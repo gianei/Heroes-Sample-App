@@ -8,8 +8,13 @@ import com.glsebastiany.heroessample.core.schedulers.IoToMainScheduler
 import com.glsebastiany.heroessample.usecase.GetAllHeroesPaginatedUseCase
 import com.glsebastiany.heroessample.ui.core.base.BaseViewModel
 import com.glsebastiany.heroessample.ui.core.base.LoadableViewModel
-import com.glsebastiany.heroessample.ui.core.base.ViewModelRxTransformer
+import com.glsebastiany.heroessample.ui.core.rxsteps.StepAggregatorViewModel
+import com.glsebastiany.heroessample.ui.core.rxsteps.StepFireErrorEvents
+import com.glsebastiany.heroessample.ui.core.rxsteps.StepLoadingState
+import com.glsebastiany.heroessample.ui.core.rxsteps.StepLogErrors
 import io.reactivex.Single
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
 
@@ -52,9 +57,12 @@ class HeroesViewModel(application: Application) : BaseViewModel(application), Lo
 
     private fun runUseCase() {
         getLoadRx()
-                .compose(ViewModelRxTransformer(this))
-                .compose(IoToMainScheduler())
-                .subscribe(onLoadResult) {}
+                .compose(StepAggregatorViewModel(this))
+                .subscribeBy(
+                        onSuccess = onLoadResult,
+                        onError = {}
+                )
+                .addTo(disposables)
     }
 
     fun applyPagination() {

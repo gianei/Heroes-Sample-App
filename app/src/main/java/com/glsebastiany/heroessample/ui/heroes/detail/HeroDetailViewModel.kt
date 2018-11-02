@@ -4,12 +4,12 @@ import android.app.Application
 import android.content.Intent
 import com.glsebastiany.heroessample.core.getApplicationComponent
 import com.glsebastiany.heroessample.repository.model.CharactersResponse
-import com.glsebastiany.heroessample.core.schedulers.IoToMainScheduler
-import com.glsebastiany.heroessample.usecase.GetAllComicsPaginatedUseCase
 import com.glsebastiany.heroessample.ui.core.base.BaseViewModel
 import com.glsebastiany.heroessample.ui.core.base.LoadableViewModel
-import com.glsebastiany.heroessample.ui.core.base.ViewModelRxTransformer
+import com.glsebastiany.heroessample.ui.core.rxsteps.StepAggregatorViewModel
+import com.glsebastiany.heroessample.usecase.GetAllComicsPaginatedUseCase
 import io.reactivex.Single
+import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
 
@@ -56,9 +56,11 @@ class HeroDetailViewModel(application: Application) : BaseViewModel(application)
 
     private fun runUseCase() {
         getLoadRx()
-                .compose(ViewModelRxTransformer(this))
-                .compose(IoToMainScheduler())
-                .subscribe(onLoadResult) {}
+                .compose(StepAggregatorViewModel(this))
+                .subscribeBy(
+                        onSuccess = onLoadResult,
+                        onError = {}
+                )
     }
 
     fun applyPagination() {
