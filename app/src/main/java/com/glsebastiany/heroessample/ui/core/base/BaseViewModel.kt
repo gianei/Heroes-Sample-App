@@ -8,6 +8,7 @@ import android.databinding.Observable
 import android.databinding.PropertyChangeRegistry
 import android.support.annotation.CallSuper
 import com.glsebastiany.heroessample.BR
+import com.glsebastiany.heroessample.ui.core.error.ApiError
 import io.reactivex.disposables.CompositeDisposable
 
 open class BaseViewModel(val app: Application) : AndroidViewModel(app), Observable, LoadingStateHolder {

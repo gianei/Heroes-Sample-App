@@ -44,7 +44,7 @@ class RetrofitFactory @Inject constructor(
                 .build()
     }
 
-    fun <T> createRetrofitService(ggsApiClass: Class<T>): T = retrofit.create(ggsApiClass)
+    fun <T> createRetrofitService(clazz: Class<T>): T = retrofit.create(clazz)
 
     companion object {
         private const val BASE_API_URL = "https://gateway.marvel.com/v1/public/"

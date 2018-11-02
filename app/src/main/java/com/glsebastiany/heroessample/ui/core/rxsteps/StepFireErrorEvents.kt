@@ -1,7 +1,7 @@
 package com.glsebastiany.heroessample.ui.core.rxsteps
 
 import com.glsebastiany.heroessample.core.retrofit.interceptor.ConnectivityInterceptor
-import com.glsebastiany.heroessample.ui.core.base.ApiError
+import com.glsebastiany.heroessample.ui.core.error.ApiError
 import com.glsebastiany.heroessample.ui.core.base.BaseViewModel
 import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers

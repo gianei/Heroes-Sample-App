@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.glsebastiany.heroessample.BR
+import com.glsebastiany.heroessample.ui.core.error.ApiErrorObserver
 
 abstract class BaseFragment<T : BaseViewModel, V : ViewDataBinding> : Fragment() {
 

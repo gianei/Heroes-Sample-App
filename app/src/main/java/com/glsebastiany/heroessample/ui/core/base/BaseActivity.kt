@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.annotation.CallSuper
 import android.support.v7.app.AppCompatActivity
 import com.glsebastiany.heroessample.BR
+import com.glsebastiany.heroessample.ui.core.error.ApiErrorObserver
 
 abstract class BaseActivity<T : BaseViewModel, V : ViewDataBinding> : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.glsebastiany.heroessample.ui.core.base
+package com.glsebastiany.heroessample.ui.core.error
 
 import android.arch.lifecycle.Observer
 import android.content.Context
