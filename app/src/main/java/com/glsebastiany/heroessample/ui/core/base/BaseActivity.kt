@@ -1,15 +1,12 @@
 package com.glsebastiany.heroessample.ui.core.base
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.annotation.CallSuper
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
 import com.glsebastiany.heroessample.BR
-import com.glsebastiany.heroessample.R
 
 abstract class BaseActivity<T : BaseViewModel, V : ViewDataBinding> : AppCompatActivity() {
 
@@ -48,10 +45,7 @@ abstract class BaseActivity<T : BaseViewModel, V : ViewDataBinding> : AppCompatA
     }
 
     private fun setupErrorListener() {
-        viewModel.showErrorScreen.observe(this, Observer {
-            if (it == true)
-                Toast.makeText(this, getString(R.string.generic_error), Toast.LENGTH_LONG).show()
-        })
+        viewModel.showErrorScreen.observe(this, ApiErrorObserver(this))
     }
 
     open fun onAfterCreateView(savedInstanceState: Bundle?) {}

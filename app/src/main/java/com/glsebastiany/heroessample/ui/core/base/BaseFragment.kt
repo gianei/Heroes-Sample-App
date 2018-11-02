@@ -1,6 +1,5 @@
 package com.glsebastiany.heroessample.ui.core.base
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -10,9 +9,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.glsebastiany.heroessample.BR
-import com.glsebastiany.heroessample.R
 
 abstract class BaseFragment<T : BaseViewModel, V : ViewDataBinding> : Fragment() {
 
@@ -57,10 +54,7 @@ abstract class BaseFragment<T : BaseViewModel, V : ViewDataBinding> : Fragment()
     }
 
     private fun setupErrorListener() {
-        viewModel.showErrorScreen.observe(this, Observer {
-            if (it == true)
-                Toast.makeText(requireContext(), getString(R.string.generic_error), Toast.LENGTH_LONG).show()
-        })
+        viewModel.showErrorScreen.observe(this, ApiErrorObserver(requireContext()))
     }
 
     open fun onAfterCreateView(savedInstanceState: Bundle?) {}

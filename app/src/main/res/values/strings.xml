@@ -3,7 +3,7 @@
 
     <!--Error-->
     <string name="generic_error">Something wrong happened, try again.</string>
-    <string name="no_network_message">No internet connection</string>
+    <string name="no_network_message">You are disconnected, turn on your connectivity and try again.</string>
 
     <!--Heroes-->
     <string name="heroes">Heroes</string>

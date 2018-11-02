@@ -67,14 +67,14 @@ open class BaseViewModel(val app: Application) : AndroidViewModel(app), Observab
 
     //endregion
 
-    val showErrorScreen = MutableLiveData<Boolean>()
+    val showErrorScreen = MutableLiveData<ApiError>()
 
     /**
      * Must call this from main thread
      */
-    fun showErrorScreen() {
-        showErrorScreen.value = true
-        showErrorScreen.value = false
+    fun showErrorScreen(apiError: ApiError) {
+        showErrorScreen.value = apiError
+        showErrorScreen.value = null
     }
 
 }
